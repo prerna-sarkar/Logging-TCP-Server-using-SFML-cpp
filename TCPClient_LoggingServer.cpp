@@ -40,12 +40,12 @@ int main(int argc, char* argv[])
         port = atoi(argv[2]);
     }
 
-    sf::IpAddress server = argv[1];
+    sf::IpAddress server = argv[1]; // 1. Create a server with the entered IP address
 
-    sf::TcpSocket socket;  // Create a socket for communicating with the server
+    sf::TcpSocket socket;  // 2. Create a socket for communicating with the server
 
-    // Connect to the server
-    if (socket.connect(server, port) != sf::Socket::Done)
+    // 3. Connect socket to the server's specified port
+    if (socket.connect(server, port) != sf::Socket::Done) //sf::Socket::Done returns 
     {
         std::cout << "Failed to connect to the server at: " << argv[1] << " on " << argv[2] << std::endl;
         std::cout << "Please check your values and press any key to end the program!" << std::endl;
@@ -53,17 +53,17 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    while (1)  // continuously prompt the user for messages to send to the server
+    while (1)  // 4. continuously prompt the user for messages to send to the server
     {
         std::string out;
         std::cout << "Please enter a message: ";
-        getline(std::cin, out);
+        getline(std::cin, out); 
         if (out == "quit")  //client disconnects and terminates when the user enters the message : quit
         {
             socket.disconnect();
             return 1;
         }
-        if (socket.send(out.c_str(), out.size()) != sf::Socket::Done)
+        if (socket.send(out.c_str(), out.size()) != sf::Socket::Done) // 5. Send contents of "out" over the socket connection
             return 1;
 
     }
