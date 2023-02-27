@@ -53,6 +53,3 @@ CLIENT PROGRAM:
 
 If the entered command line arguments are invalid, the program will output an error message and terminate.
 
-# License
-
-This project is licensed under the MIT License. Please see the LICENSE file for more information.
